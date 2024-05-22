@@ -1,20 +1,21 @@
-<p style="color: green"><%= notice %></p>
-
-<h1>Messages</h1>
-
-<div id="messages">
-  <% @messages.each do |message| %>
-    <%= render message %>
-    <p>
-      <%= link_to "Show this message", message %>
-    </p>
+<p style="color: green;margin:0;padding:0;"><%= notice %></p>
+<div class="chat-container">
+  <h1 class="page-title">&#128512; Twenty Questions</h1>
+  <h4>
+    Current Count: <%= @messages.where(role: "assistant").where.not(content: "No").count%>
+  </h4>
+  <p class="system-card message">
+    <span>
+      Let's play 20 questions. Guess the word I am thinking of.
+    </span>
+  </p>
+  <div id="messages" class="messages-container">
+    <% @messages.each do |message| %>
+      <%= render message %>
+    <% end %>
+  </div>
+  <%= render "form", message: Message.new, disabled: @messages.first&.role == "user" %>
+  <%= form_for Message.new, url: messages_reply_path do |f| %>
+    <%= f.submit "Next Guess", disabled: @messages.first&.role == "assistant" %>
   <% end %>
 </div>
-<h4>
-  Current Count: <%= @messages.where(role: "assistant").where.not(content: "No").count%>
-</h4>
-<%= link_to "New message", new_message_path %>
-<%= form_for Message.new, url: messages_reply_path do |f| %>
-  <label>Get Reply</label>
-  <%= f.submit %>
-<% end %>

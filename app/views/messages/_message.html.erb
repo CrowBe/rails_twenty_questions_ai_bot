@@ -1,12 +1,10 @@
-<div id="<%= dom_id message %>">
-  <p>
-    <strong>Content:</strong>
-    <%= message.content %>
-  </p>
-
-  <p>
-    <strong>Role:</strong>
-    <%= message.role %>
-  </p>
-
-</div>
+<p id="<%= dom_id message %>" class="<%=message.role%>-card message">
+  <% if message.role == "assistant"%>
+    <%= image_tag("chatbot-icon.svg", width: 50) %>
+  <%else%>
+    <%= image_tag("user-avatar-happy.svg", width: 50) %>
+  <%end%>
+  <span>
+    <%=message.content%>
+  </span>
+</p>

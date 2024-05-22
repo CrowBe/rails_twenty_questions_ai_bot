@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  root 'messages#index'
+  
   post "messages/reply", controller: "messages", action: "create_reply"
   resources :messages
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

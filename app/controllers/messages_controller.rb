@@ -3,7 +3,7 @@ class MessagesController < ApplicationController
 
   # GET /messages or /messages.json
   def index
-    @messages = Message.where(session_id: session_id)
+    @messages = Message.where(session_id: session_id).order(created_at: :desc)
   end
 
   # GET /messages/1 or /messages/1.json
@@ -29,7 +29,7 @@ class MessagesController < ApplicationController
     
     if @message.save
       # Create our chat service and set up the system prompt
-      @messages = Message.where(session_id: @message.session_id).order(created_at: :asc)
+      @messages = Message.where(session_id: @message.session_id).order(created_at: :desc)
       redirect_to messages_url(@messages), notice: "Message was successfully created."
     else
       render :new, status: :unprocessable_entity
@@ -39,7 +39,7 @@ class MessagesController < ApplicationController
   # We hit this function after the user has created a new message to fetch and save the ai response
   def create_reply
     # Open up the service session and pass in the system promps
-    chat_session = ChatService.new(initial_prompt: "Let's play 20 questions. Guess the word I am thinking of.")
+    chat_session = ChatService.new(initial_prompt: "Let's play 20 questions. Guess the word I am thinking of. Only ask yes or no questions. When you guess the correct word, respond with a celebratory statement.")
     chat_history = [chat_session.system_prompt]
     
     # Get all messages that exist in the db from the current session, loop through and insert them into our chat history variable
@@ -55,7 +55,7 @@ class MessagesController < ApplicationController
     @message = Message.new(role: "assistant", session_id: session_id, content: response)
     if @message.save
       # Add the most recent message to the list and re render the updated list of messages
-      @messages = Message.where(session_id: session_id).order(created_at: :asc)
+      @messages = Message.where(session_id: session_id).order(created_at: :desc)
       redirect_to messages_url(@messages), notice: "Message was successfully created."
     else
       render :new, status: :unprocessable_entity

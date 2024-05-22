@@ -2,7 +2,6 @@
   <% if message.errors.any? %>
     <div style="color: red">
       <h2><%= pluralize(message.errors.count, "error") %> prohibited this message from being saved:</h2>
-
       <ul>
         <% message.errors.each do |error| %>
           <li><%= error.full_message %></li>
@@ -10,13 +9,12 @@
       </ul>
     </div>
   <% end %>
-
-  <div>
-    <%= form.label :content, style: "display: block" %>
-    <%= form.text_area :content %>
-  </div>
-
-  <div>
-    <%= form.submit %>
+  <div class="message-input-container">
+    <div>
+      <%= form.text_field :content, placeholder: "Reply with Yes Or No", disabled: disabled %>
+    </div>
+    <div>
+      <%= form.submit "Answer", disabled: disabled %>
+    </div>
   </div>
 <% end %>
