@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root 'messages#index'
-  
-  post "messages/reply", controller: "messages", action: "create_reply"
+  # refresh chat history
+  delete '/destroy_messages', controller:'messages', action:'destroy_all'
   resources :messages
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
