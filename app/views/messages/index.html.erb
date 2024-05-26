@@ -2,7 +2,7 @@
   <p style="color: green;margin:0;padding:0;"><%= notice %></p> 
   <h1 class="page-title">&#128512; Twenty Questions</h1>
   <h4>
-    Current Count: <%= @messages.where(role: "assistant").where.not(content: "No").count%>
+    Current Count: <%= @messages.where(role: "assistant").count%>
   </h4>
   <p class="system-card message">
     <span>
