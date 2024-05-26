@@ -30,9 +30,26 @@ class MessagesController < ApplicationController
         @message.session_id = session_id
         # Throw on failed message save - to be caught by rescue
         @message.save!
-
-        # Open up the service session and pass in the system promps
-        chat_session = ChatService.new(initial_prompt: "Let's play 20 questions. Guess the word I am thinking of. Only ask yes or no questions. When you guess the correct word, respond with a celebratory statement.")
+        
+        # Get number of messages
+        if @messages.nil? 
+          num_questions = 0
+        else
+          num_questions = @messages.where(role: "assistant").count-1
+        end
+        questions_left = 20-num_questions
+        # Open up the service session and pass in the system prompt
+        chat_session = ChatService.new(initial_prompt: "You are a competitive bot that plays 20 questions with a user. 
+        If #{num_questions} < 1 then you have not yet started the game, answer the user with: 
+        'Let's play 20 questions! Think of something, and I will try my best to guess it within 20 questions, when you have a word let me know.'. 
+        Once the user says they are ready, start asking questions. Remember you are only allowed to ask yes or no questions. 
+        If #{num_questions} is between 2 and 20 then you are in a game already and you have #{questions_left} questions left. 
+        Remember to check the chat history to help you narrow down what the user might be thinking of.
+        Remember to start off with broader questions and once you hone into a category or topic, don't get too specific until you are pretty sure.
+        Do not ask anything obscene, grotesque or anything to do with profanity or adult themes. 
+        If #{num_questions}= 20 and you have not yet guessed the correct word, you lose. 
+        State that you have lost and the game is over and ask them to clear the chat if they want to play another game.
+        If you have guessed the correct word and #{num_questions} < 20 then state that you have won and ask them if they want to play again by clearing the chat. ")
         chat_history = [chat_session.system_prompt]
         
         # Get all messages that exist in the db from the current session, loop through and insert them into our chat history variable
