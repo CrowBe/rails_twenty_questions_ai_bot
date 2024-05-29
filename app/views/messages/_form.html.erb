@@ -11,7 +11,7 @@
   <% end %>
   <div class="message-input-container">
     <div>
-      <%= form.text_area :content, placeholder: "Reply with Yes Or No", disabled: disabled, :cols => "100", :rows => "2"  %>
+      <%= form.text_field :content, placeholder: "Reply with Yes Or No", disabled: disabled, :cols => "100", :rows => "2", :autofocus => true  %>
     </div>
     <div>
       <%= form.submit "Answer", disabled: disabled %>

@@ -14,11 +14,15 @@
  *= require_self
  */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 body {
   font-family: "Roboto", sans-serif;
   padding: 0;
   margin: 0;
+  background-image: url("background-1.jpg");
+  background-size: contain;
+  background-repeat: repeat-x;
 }
 
 h1,
@@ -27,7 +31,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Press Start 2P", system-ui;
 }
 
 p {
@@ -42,13 +46,14 @@ h4 {
 }
 
 div.chat-container {
-  background-color: black;
-  padding: 10px 40px;
+  padding: 40px;
   color: white;
   height: 100vh;
-  max-height: calc(100vh - 20px);
+  max-height: calc(100vh - 80px);
   display: flex;
   flex-direction: column;
+  max-width: 60%;
+  margin: 0 auto;
 }
 
 h1.page-title {
@@ -63,17 +68,20 @@ div.messages-container {
   flex-direction: column-reverse;
   overflow-y: auto;
   flex-grow: 1;
+  gap: 10px;
+  padding: 10px;
 }
 
 p.message {
   border-radius: 8px;
-  border: 1px solid black;
+  border: 1px solid white;
   padding: 6px;
-  color: white;
+  color: darkslategrey;
   margin: 0;
   display: flex;
   align-items: center;
   gap: 10px;
+  background-color: rgba(255, 255, 255, 0.6);
 }
 
 div.message-input-container {
@@ -81,77 +89,33 @@ div.message-input-container {
   gap: 10px;
 }
 
-
-/* FONT CLASSES */
-
-.roboto-thin {
-  font-family: "Roboto", sans-serif;
-  font-weight: 100;
-  font-style: normal;
+.message-input-container input {
+  font-size: 20px;
+  padding: 4px 8px;
+  border-radius: 10px;
 }
 
-.roboto-light {
-  font-family: "Roboto", sans-serif;
-  font-weight: 300;
-  font-style: normal;
+.message-input-container input[type='text'] {
+  min-width: 40vw;
 }
 
-.roboto-regular {
-  font-family: "Roboto", sans-serif;
-  font-weight: 400;
-  font-style: normal;
+.message-input-container input[type='submit'] {
+  font-family: "Press Start 2P", system-ui;
+  cursor: pointer;
+  background-color: green;
+  color: white
 }
 
-.roboto-medium {
-  font-family: "Roboto", sans-serif;
-  font-weight: 500;
-  font-style: normal;
+.message-input-container input[type='submit']:disabled {
+  background-color: darkred;
 }
 
-.roboto-bold {
-  font-family: "Roboto", sans-serif;
-  font-weight: 700;
-  font-style: normal;
-}
-
-.roboto-black {
-  font-family: "Roboto", sans-serif;
-  font-weight: 900;
-  font-style: normal;
-}
-
-.roboto-thin-italic {
-  font-family: "Roboto", sans-serif;
-  font-weight: 100;
-  font-style: italic;
-}
-
-.roboto-light-italic {
-  font-family: "Roboto", sans-serif;
-  font-weight: 300;
-  font-style: italic;
-}
-
-.roboto-regular-italic {
-  font-family: "Roboto", sans-serif;
-  font-weight: 400;
-  font-style: italic;
-}
-
-.roboto-medium-italic {
-  font-family: "Roboto", sans-serif;
-  font-weight: 500;
-  font-style: italic;
-}
-
-.roboto-bold-italic {
-  font-family: "Roboto", sans-serif;
-  font-weight: 700;
-  font-style: italic;
-}
-
-.roboto-black-italic {
-  font-family: "Roboto", sans-serif;
-  font-weight: 900;
-  font-style: italic;
+.system-card a {
+  font-family: "Press Start 2P", system-ui;
+  text-decoration: none;
+  color: #fff;
+  background: teal;
+  border: 1px solid white;
+  min-width: max-content;
+  padding: 8px 16px
 }

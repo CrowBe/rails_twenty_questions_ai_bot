@@ -7,3 +7,7 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+user = User.find_or_initialize_by(name: "Ben & Niki")
+user.password = Rails.application.credentials[:admin_password]
+user.save!

@@ -46,6 +46,8 @@ gem "bootsnap", require: false
 
 # Open ai API wrapper
 gem "ruby-openai"
+gem 'bcrypt', '~> 3.1.7'
+
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
