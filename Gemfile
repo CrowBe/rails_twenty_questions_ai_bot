@@ -46,6 +46,8 @@ gem "bootsnap", require: false
 
 # Open ai API wrapper
 gem "ruby-openai"
+
+# Added bcrypt for user password encryption
 gem 'bcrypt', '~> 3.1.7'
 
 
