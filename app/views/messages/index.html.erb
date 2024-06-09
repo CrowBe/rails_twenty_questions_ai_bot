@@ -1,6 +1,6 @@
 <div class="chat-container">
   <p style="color: green;margin:0;padding:0;"><%= notice %></p> 
-  <h1 class="page-title">&#128512; Twenty Questions</h1>
+  <h1 class="page-title">&#128512; 20 Questions</h1>
   <h4>
     Current Count: <%= [@messages.where(role: "assistant").count - 1, 0].max%>
   </h4>
@@ -8,7 +8,7 @@
     <span>
       Wanna play 20 questions? Start a chat with me and I will guess what you are thinking of.
     </span>
-    <%= link_to "New Chat", destroy_messages_path, data: { "turbo-method": :delete } %>
+    <%= link_to "New Chat", destroy_messages_path, data: { "turbo-method": :delete },  :class => "eightbit-btn" %>
   </p>
   <div id="messages" class="messages-container">
     <% @messages.each do |message| %>

@@ -1,15 +1,16 @@
 <!-- app/views/user_sessions/new.html.erb -->
+<div id='login-container'> 
 <h1>Login page</h1>
 <%= form_with model: @user, url: user_sessions_path do |f| %>
   <div>
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+    <%= f.text_field :name , :class => "login-input" , placeholder: "Username" %>
   </div>
+  <h1>  </h1>
   <div>
-    <%= f.label :password %><br>
-    <%= f.password_field :password %>
+    <%= f.password_field :password, :class => "login-input" , placeholder: "Password" %>
   </div>
   <p>
-    <%= f.submit 'Login' %>
+    <%= f.submit "Let's Play!",  :class => "eightbit-btn" %>
   </p>
+</div>
 <% end %>
