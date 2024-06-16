@@ -1,8 +1,8 @@
 <p id="<%= dom_id message %>" class="<%=message.role%>-card message">
   <% if message.role == "assistant"%>
-    <%= image_tag("chatbot-icon.svg", width: 50) %>
+    <%=  image_tag("robot-icon-niki-2.png", width: 50) %>
   <%else%>
-    <%= image_tag("user-avatar-happy.svg", width: 50) %>
+    <%= image_tag("female-icon-niki.png", width: 50) %>
   <%end%>
   <span>
     <%=message.content%>
