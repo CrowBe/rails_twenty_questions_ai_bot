@@ -91,6 +91,10 @@ p.message {
   background-color: rgba(255, 255, 255, 0.6);
 }
 
+p.message img {
+  flex-shrink: 0;
+}
+
 div.message-input-container {
   display: flex;
   gap: 10px;
